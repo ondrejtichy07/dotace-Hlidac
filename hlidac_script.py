@@ -1,4 +1,7 @@
 import requests, zipfile, io, json, sys
+import module
+import os.path
+
 
 headers = {
   'Content-Type': 'application/json',
@@ -14,22 +17,16 @@ def download_data():
   print('Stahuji nová data..')
   r = requests.get(URL, headers=headers)
   z = zipfile.ZipFile(io.BytesIO(r.content))
-  z.extractall('/Users/ondrejtichy/Desktop/Hlidac_statu/zipfiles')
-  print('Data stažena')
+  z.extractall('./zipfiles')
+  print('DATA STAŽENA')
 
-
-try:
-  f = open('/Users/ondrejtichy/Desktop/Hlidac_statu/zipfiles/dataset.prijemcidotaci.dump.data.json', 'r')
-  dataset = json.load(f)
-  data = json.dumps(dataset, indent=4, sort_keys=True)
-  #print(data)
-except:
+if os.path.isfile('./zipfiles/dataset.prijemcidotaci.dump.data.json') == True:
+  pass
+else:
   print('V adresáři dosud nejsou žádná data. Nyní proběhne iniciální stažení dat z Hlídače. Může to chvíli trvat.')
   download_data()
-  l = open('/Users/ondrejtichy/Desktop/Hlidac_statu/zipfiles/dataset.prijemcidotaci.dump.data.json', 'r')
-  dataset = json.load(l)
-  initial = 1
 
+'''
 def search_ico(ico):
  for keyval in dataset:
   if ico == keyval['ICO']:
@@ -38,7 +35,6 @@ def search_ico(ico):
 
 if initial != 1:
   download_new_data = input('Chcete stáhnout aktuální dataset o příjemcích dotací z Hlídače státu? (Y/N): ')
-
 if download_new_data.upper() == 'Y':
   download_data()
 
@@ -48,5 +44,11 @@ while ic.upper() != 'X':
     search_ico(ic)
   except:
     pass
+'''
 
 #search_ico('00103004')
+
+path = '/Users/ondrejtichy/Desktop/Hlidac/zipfiles/dataset.prijemcidotaci.dump.data.json'
+sheetname  = 'data'
+output_file = '/Users/ondrejtichy/Desktop/Hlidac/xlsx'
+module.json_toXlsx(path,output_file,sheetname)
