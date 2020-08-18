@@ -6,7 +6,7 @@ import time
 password = os.environ.get('HLIDAC_PW')
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': password
+  'Authorization': os.environ.get('HLIDAC_PW')
 }
 
 URL = 'https://www.hlidacstatu.cz/api/v1/dump?datatype=dataset.prijemcidotaci'
