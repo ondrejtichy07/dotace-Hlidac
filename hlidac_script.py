@@ -49,6 +49,6 @@ while ic.upper() != 'X':
 #search_ico('00103004')
 
 path = '/Users/ondrejtichy/Desktop/Hlidac/zipfiles/dataset.prijemcidotaci.dump.data.json'
-sheetname  = 'data'
-output_file = '/Users/ondrejtichy/Desktop/Hlidac/xlsx'
+sheetname  = 'Results'
+output_file = '/Users/ondrejtichy/Desktop/Hlidac/dataset'
 module.json_toXlsx(path,output_file,sheetname)
