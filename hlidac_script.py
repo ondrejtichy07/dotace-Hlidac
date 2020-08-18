@@ -1,11 +1,12 @@
-import requests, zipfile, io, json, sys
+import requests, zipfile, io, json, sys, os
 import module
 import os.path
+import time
 
-
+password = os.environ.get('HLIDAC_PW')
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'eeb5e2cb3f6448b7a509dcc2d4ef0ed9'
+  'Authorization': password
 }
 
 URL = 'https://www.hlidacstatu.cz/api/v1/dump?datatype=dataset.prijemcidotaci'
@@ -46,8 +47,8 @@ while ic.upper() != 'X':
     pass
 '''
 
-#search_ico('00103004')
-
+#00103004
+time.sleep(5)
 path = '/Users/ondrejtichy/Desktop/Hlidac/zipfiles/dataset.prijemcidotaci.dump.data.json'
 sheetname  = 'Results'
 output_file = '/Users/ondrejtichy/Desktop/Hlidac/dataset'
